@@ -11,7 +11,7 @@
       "name": "autoresearch-mlx",
       "displayName": "Autoresearch (MLX)",
       "description": "Autonomous, fixed-budget MLX training-research loop: edit train.py, run a 5-minute experiment, read val_bpb, keep-or-revert via git.",
-      "source": ".",
+      "source": "./plugins/autoresearch-mlx",
       "version": "0.1.0",
       "author": {
         "name": "kfcain"
