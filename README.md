@@ -41,6 +41,9 @@ Once installed:
   and the agent runs the full setup + experiment loop from `program.md`.
 - **Command** — `/autoresearch-mlx:start [run-tag]` explicitly kicks off a fresh
   run (new `autoresearch/<tag>` branch, baseline, then the autonomous loop).
+- **Subagent** — after setup, the loop can run in an isolated context via the
+  `research-loop` subagent, so its git/training churn doesn't flood your main
+  session (handy for long "run while I sleep" runs).
 
 The plugin only teaches the agent the protocol; it still needs a checkout of this
 repo (with `uv sync` and `uv run prepare.py` done once) to actually train.
@@ -51,6 +54,7 @@ What's in the plugin:
 - `.claude-plugin/marketplace.json` — single-plugin marketplace (this repo).
 - `skills/autoresearch/SKILL.md` — the autonomous research-loop protocol.
 - `commands/start.md` — `/autoresearch-mlx:start` new-run entrypoint.
+- `agents/research-loop.md` — isolated-context subagent that runs the loop.
 
 ## What matters
 

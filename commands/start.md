@@ -27,6 +27,10 @@ Once I confirm setup, begin the experiment loop and run autonomously — edit
 `uv run train.py > run.log 2>&1`, read `val_bpb`, keep-or-revert via git, log to
 `results.tsv`, and **do not stop to ask whether to continue**.
 
+To keep the loop's git/training churn out of this session, you may run it in an
+isolated context by delegating to the `research-loop` subagent once setup is
+confirmed and the baseline is recorded.
+
 Follow the full protocol in the `autoresearch` skill (setup, judgment criteria,
 loop mechanics, timeout/crash handling, tsv format, and the optional `rigor.py`
 significance gate).
