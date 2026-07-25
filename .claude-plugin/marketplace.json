@@ -1,5 +1,5 @@
 {
-  "name": "autoresearch-mlx",
+  "name": "autoresearch-mlx-marketplace",
   "description": "Autonomous MLX training-research loop for Claude Code and Cowork.",
   "owner": {
     "name": "kfcain",

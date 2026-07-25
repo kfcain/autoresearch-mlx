@@ -32,7 +32,7 @@ run directly.
 
 ```
 /plugin marketplace add kfcain/autoresearch-mlx
-/plugin install autoresearch-mlx@autoresearch-mlx
+/plugin install autoresearch-mlx@autoresearch-mlx-marketplace
 ```
 
 Once installed:
