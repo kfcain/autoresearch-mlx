@@ -26,16 +26,12 @@ Then point Claude Code or another coding agent at `program.md` and let it run th
 
 ## Claude Code / Cowork plugin
 
-This repo ships as a Claude Code (and Cowork) plugin so you don't have to paste
-`program.md` by hand — the loop protocol is packaged as a skill the agent can
-run directly.
+This repo ships as a plugin so you don't have to paste `program.md` by hand — the
+loop protocol is packaged as a skill the agent can run directly. The repo doubles
+as a single-plugin marketplace; the plugin itself lives in
+`plugins/autoresearch-mlx/`.
 
-```
-/plugin marketplace add kfcain/autoresearch-mlx
-/plugin install autoresearch-mlx@autoresearch-mlx-marketplace
-```
-
-Once installed:
+Once installed you get:
 
 - **Skill** — say "run autoresearch" (or invoke `/autoresearch-mlx:autoresearch`)
   and the agent runs the full setup + experiment loop from `program.md`.
@@ -45,16 +41,46 @@ Once installed:
   `research-loop` subagent, so its git/training churn doesn't flood your main
   session (handy for long "run while I sleep" runs).
 
+### Install in Claude Code
+
+```
+/plugin marketplace add kfcain/autoresearch-mlx
+/plugin install autoresearch-mlx@autoresearch-mlx-marketplace
+```
+
+### Install in Claude Cowork
+
+**As a plugin (skill + command + subagent).** In Cowork, open **Customize →
+Plugins → Personal plugins → `+` → Add marketplace**, enter
+`kfcain/autoresearch-mlx`, then install **Autoresearch (MLX)**. (Cowork's
+marketplace loader expects each plugin in its own subdirectory — hence
+`plugins/autoresearch-mlx/` with `source: "./plugins/autoresearch-mlx"` in the
+marketplace manifest.)
+
+**As a standalone skill (quickest path).** Build the skill ZIP and upload it via
+**Customize → Skills → `+` → Create skill**:
+
+```
+./scripts/build-cowork-skill.sh      # writes dist/autoresearch-skill.zip
+```
+
+The ZIP install gives you just the skill; the marketplace install also brings the
+`/start` command and the `research-loop` subagent.
+
 The plugin only teaches the agent the protocol; it still needs a checkout of this
 repo (with `uv sync` and `uv run prepare.py` done once) to actually train.
 
-What's in the plugin:
+### What's in the plugin
 
-- `.claude-plugin/plugin.json` — plugin manifest.
-- `.claude-plugin/marketplace.json` — single-plugin marketplace (this repo).
-- `skills/autoresearch/SKILL.md` — the autonomous research-loop protocol.
-- `commands/start.md` — `/autoresearch-mlx:start` new-run entrypoint.
-- `agents/research-loop.md` — isolated-context subagent that runs the loop.
+```
+.claude-plugin/marketplace.json          # marketplace manifest (repo root)
+plugins/autoresearch-mlx/
+  .claude-plugin/plugin.json             # plugin manifest
+  skills/autoresearch/SKILL.md           # the autonomous research-loop protocol
+  commands/start.md                      # /autoresearch-mlx:start new-run entrypoint
+  agents/research-loop.md                # isolated-context subagent
+scripts/build-cowork-skill.sh            # builds the Cowork skill ZIP
+```
 
 ## What matters
 
