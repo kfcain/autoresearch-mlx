@@ -24,6 +24,34 @@ uv run train.py
 
 Then point Claude Code or another coding agent at `program.md` and let it run the loop.
 
+## Claude Code / Cowork plugin
+
+This repo ships as a Claude Code (and Cowork) plugin so you don't have to paste
+`program.md` by hand — the loop protocol is packaged as a skill the agent can
+run directly.
+
+```
+/plugin marketplace add kfcain/autoresearch-mlx
+/plugin install autoresearch-mlx@autoresearch-mlx
+```
+
+Once installed:
+
+- **Skill** — say "run autoresearch" (or invoke `/autoresearch-mlx:autoresearch`)
+  and the agent runs the full setup + experiment loop from `program.md`.
+- **Command** — `/autoresearch-mlx:start [run-tag]` explicitly kicks off a fresh
+  run (new `autoresearch/<tag>` branch, baseline, then the autonomous loop).
+
+The plugin only teaches the agent the protocol; it still needs a checkout of this
+repo (with `uv sync` and `uv run prepare.py` done once) to actually train.
+
+What's in the plugin:
+
+- `.claude-plugin/plugin.json` — plugin manifest.
+- `.claude-plugin/marketplace.json` — single-plugin marketplace (this repo).
+- `skills/autoresearch/SKILL.md` — the autonomous research-loop protocol.
+- `commands/start.md` — `/autoresearch-mlx:start` new-run entrypoint.
+
 ## What matters
 
 - `prepare.py` - data prep, tokenizer, dataloader, and evaluation. Treat as fixed.

@@ -1,0 +1,26 @@
+{
+  "name": "autoresearch-mlx",
+  "description": "Autonomous MLX training-research loop for Claude Code and Cowork.",
+  "owner": {
+    "name": "kfcain",
+    "url": "https://github.com/kfcain"
+  },
+  "version": "0.1.0",
+  "plugins": [
+    {
+      "name": "autoresearch-mlx",
+      "displayName": "Autoresearch (MLX)",
+      "description": "Autonomous, fixed-budget MLX training-research loop: edit train.py, run a 5-minute experiment, read val_bpb, keep-or-revert via git.",
+      "source": ".",
+      "version": "0.1.0",
+      "author": {
+        "name": "kfcain"
+      },
+      "homepage": "https://github.com/kfcain/autoresearch-mlx",
+      "repository": "https://github.com/kfcain/autoresearch-mlx",
+      "license": "MIT",
+      "keywords": ["mlx", "apple-silicon", "autoresearch", "training", "autonomous-agent"],
+      "category": "ai-ml"
+    }
+  ]
+}
